@@ -48,6 +48,7 @@ BuildRequires:     pcre-devel
 BuildRequires:     perl-devel
 BuildRequires:     perl(ExtUtils::Embed)
 BuildRequires:     zlib-devel
+BuildRequires:     lua-devel
 #BuildRequires:     systemd-units
 Requires:          GeoIP
 Requires:          gd
@@ -104,6 +105,11 @@ export DESTDIR=%{buildroot}
     --with-http_image_filter_module \
     --with-http_geoip_module \
     --with-http_sub_module \
+    --add-module=modules/lua-nginx-module \
+    --add-module=modules/memc-nginx-module \
+    --add-module=modules/ngx_devel_kit \
+    --add-module=modules/set-misc-nginx-module \
+    --add-module=modules/srcache-nginx-module \
     --with-http_dav_module \
     --with-http_flv_module \
     --with-http_mp4_module \

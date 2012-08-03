@@ -1,0 +1,45 @@
+
+Changes with upstream keepalive module 0.7 (2011-09-08):
+
+    *) Bugfix: unbuffered connection might not be kept alive under Linux.
+
+
+Changes with upstream keepalive module 0.6 (2011-09-04):
+
+    *) Bugfix: module could not be built on Windows.
+
+    *) Bugfix: module could not be built without the ngx_http_ssl_module.
+
+
+Changes with upstream keepalive module 0.5 (2011-09-03):
+
+    *) Feature: https connections support (requires patches).
+
+    *) Bugfix: invalid connections might be cached.
+
+
+Changes with upstream keepalive module 0.4 (2010-12-15):
+
+    *) Bugfix: the "[alert] ... open socket ... left in connection ..."
+       messages were logged on nginx worker process gracefull exit for
+       each cached connection; the bug had appeared in 0.3.
+
+
+Changes with upstream keepalive module 0.3 (2010-09-14):
+
+    *) Bugfix: cached connections might be closed needlessly.
+       Thanks to Martin Fjordvald.
+
+    *) Bugfix: in memory allocation error handling on config creation.
+
+
+Changes with upstream keepalive module 0.2 (2009-05-15):
+
+    *) Feature: expiremental support for FastCGI (requires patches).
+
+    *) Bugfix: invalid connections might be cached.
+
+
+Changes with upstream keepalive module 0.1 (2008-10-24):
+
+    *) The first public version.
