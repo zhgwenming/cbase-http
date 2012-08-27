@@ -39,6 +39,7 @@ Source104:         50x.html
 # removes -Werror in upstream build scripts.  -Werror conflicts with
 # -D_FORTIFY_SOURCE=2 causing warnings to turn into errors.
 Patch0:            nginx-auto-cc-gcc.patch
+Patch1:            nginx-cbase-http.patch
 
 BuildRequires:     GeoIP-devel
 BuildRequires:     gd-devel
@@ -72,6 +73,7 @@ memory usage.
 %prep
 %setup -q
 %patch0 -p0
+%patch1 -p1
 cp -a %{SOURCE8} .
 
 
