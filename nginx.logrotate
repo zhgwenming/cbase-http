@@ -6,7 +6,7 @@
     delaycompress
     sharedscripts
     postrotate
-        /bin/systemctl kill --signal=USR1 nginx.service
+	/bin/kill -USR1 `cat /var/run/nginx.pid 2>/dev/null` 2> /dev/null || true
     endscript
 }
 

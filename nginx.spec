@@ -11,7 +11,7 @@
 Name:              nginx
 Epoch:             1
 Version:           1.2.1
-Release:           3%{?dist}
+Release:           4%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
