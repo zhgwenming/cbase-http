@@ -1,9 +1,9 @@
 /var/log/nginx/*log {
-    daily
+    size 200M
     rotate 10
     missingok
     notifempty
-    compress
+    delaycompress
     sharedscripts
     postrotate
         /bin/systemctl kill --signal=USR1 nginx.service

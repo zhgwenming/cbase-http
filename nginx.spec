@@ -11,7 +11,7 @@
 Name:              nginx
 Epoch:             1
 Version:           1.2.1
-Release:           2%{?dist}
+Release:           3%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
@@ -36,6 +36,10 @@ Source102:         nginx-logo.png
 Source103:         404.html
 Source104:         50x.html
 
+Source201:  	   nginx_cbase_cache.conf
+Source202:	       nginx_cbase_offload.conf
+Source203:	       nginx_webserver.conf
+Source204:	       nginx.cron
 # removes -Werror in upstream build scripts.  -Werror conflicts with
 # -D_FORTIFY_SOURCE=2 causing warnings to turn into errors.
 Patch0:            nginx-auto-cc-gcc.patch
@@ -141,6 +145,8 @@ install -p -D -m 0755 %{SOURCE1} \
     %{buildroot}%{_initrddir}/nginx
 install -p -D -m 0644 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/logrotate.d/nginx
+install -p -D -m 0644 %{SOURCE204} \
+    %{buildroot}%{_sysconfdir}/cron.d/nginx
 install -p -D -m 0644 %{SOURCE9} \
     %{buildroot}%{_sysconfdir}/sysconfig/nginx
 
@@ -150,7 +156,7 @@ install -p -d -m 0755 %{buildroot}%{nginx_home_tmp}
 install -p -d -m 0755 %{buildroot}%{nginx_logdir}
 install -p -d -m 0755 %{buildroot}%{nginx_webroot}
 
-install -p -m 0644 %{SOURCE3} \
+install -p -m 0644 %{SOURCE3} %{SOURCE201} %{SOURCE202} %{SOURCE203} \
     %{buildroot}%{nginx_confdir}
 install -p -m 0644 %{SOURCE4} %{SOURCE5} %{SOURCE6} \
     %{buildroot}%{nginx_confdir}/conf.d
@@ -208,6 +214,9 @@ fi
 %config(noreplace) %{nginx_confdir}/mime.types
 %config(noreplace) %{nginx_confdir}/mime.types.default
 %config(noreplace) %{nginx_confdir}/nginx.conf
+%config(noreplace) %{nginx_confdir}/nginx_cbase_cache.conf
+%config(noreplace) %{nginx_confdir}/nginx_cbase_offload.conf
+%config(noreplace) %{nginx_confdir}/nginx_webserver.conf
 %config(noreplace) %{nginx_confdir}/nginx.conf.default
 %config(noreplace) %{nginx_confdir}/scgi_params
 %config(noreplace) %{nginx_confdir}/scgi_params.default
@@ -217,6 +226,7 @@ fi
 %config(noreplace) %{nginx_confdir}/conf.d/*.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/nginx
 %config(noreplace) %{_sysconfdir}/sysconfig/nginx
+%config(noreplace) %{_sysconfdir}/cron.d/nginx
 %dir %{perl_vendorarch}/auto/nginx
 %{perl_vendorarch}/nginx.pm
 %{perl_vendorarch}/auto/nginx/nginx.so
