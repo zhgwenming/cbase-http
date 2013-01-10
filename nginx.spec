@@ -11,7 +11,7 @@
 Name:              nginx
 Epoch:             1
 Version:           1.2.1
-Release:           4%{?dist}
+Release:           900.4%{?dist}
 
 Summary:           A high performance web server and reverse proxy server
 Group:             System Environment/Daemons
@@ -40,6 +40,7 @@ Source201:  	   nginx_cbase_cache.conf
 Source202:	       nginx_cbase_offload.conf
 Source203:	       nginx_webserver.conf
 Source204:	       nginx.cron
+Source205:	       nginx_security.conf
 # removes -Werror in upstream build scripts.  -Werror conflicts with
 # -D_FORTIFY_SOURCE=2 causing warnings to turn into errors.
 Patch0:            nginx-auto-cc-gcc.patch
@@ -156,7 +157,7 @@ install -p -d -m 0755 %{buildroot}%{nginx_home_tmp}
 install -p -d -m 0755 %{buildroot}%{nginx_logdir}
 install -p -d -m 0755 %{buildroot}%{nginx_webroot}
 
-install -p -m 0644 %{SOURCE3} %{SOURCE201} %{SOURCE202} %{SOURCE203} \
+install -p -m 0644 %{SOURCE3} %{SOURCE201} %{SOURCE202} %{SOURCE203} %{SOURCE205} \
     %{buildroot}%{nginx_confdir}
 install -p -m 0644 %{SOURCE4} %{SOURCE5} %{SOURCE6} \
     %{buildroot}%{nginx_confdir}/conf.d
@@ -217,6 +218,7 @@ fi
 %config(noreplace) %{nginx_confdir}/nginx_cbase_cache.conf
 %config(noreplace) %{nginx_confdir}/nginx_cbase_offload.conf
 %config(noreplace) %{nginx_confdir}/nginx_webserver.conf
+%config(noreplace) %{nginx_confdir}/nginx_security.conf
 %config(noreplace) %{nginx_confdir}/nginx.conf.default
 %config(noreplace) %{nginx_confdir}/scgi_params
 %config(noreplace) %{nginx_confdir}/scgi_params.default
